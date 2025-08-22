@@ -1,9 +1,8 @@
-// DARK MODE
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-    const btn = document.querySelector(".toggle-btn");
-    btn.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
-}
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById("darkModeToggle");
+darkModeToggle.addEventListener("change", () => {
+    document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+});
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -15,7 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // BLOG / NOTES TOGGLE
-document.querySelectorAll(".blog-toggle, .notes-toggle").forEach(btn => {
+document.querySelectorAll(".blog-toggle, .notes-toggle, .about-toggle").forEach(btn => {
     btn.addEventListener("click", () => {
         const content = btn.nextElementSibling;
         const isVisible = window.getComputedStyle(content).display !== "none";
@@ -34,8 +33,14 @@ ctx.lineWidth = 5;
 ctx.lineJoin = "round";
 ctx.lineCap = "round";
 
-function setColor(color) { currentColor = color; ctx.strokeStyle = currentColor; }
-function setThickness(value) { ctx.lineWidth = value; }
+function setColor(color) { 
+    currentColor = color; 
+    ctx.strokeStyle = currentColor; 
+}
+
+function setThickness(value) { 
+    ctx.lineWidth = value; 
+}
 
 function getTouchPos(canvas, touchEvent) {
     const rect = canvas.getBoundingClientRect();
@@ -62,7 +67,9 @@ function draw(e) {
     ctx.stroke();
 }
 
-function endDraw() { drawing = false; }
+function endDraw() { 
+    drawing = false; 
+}
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", draw);
@@ -74,21 +81,11 @@ canvas.addEventListener("touchend", endDraw);
 
 // SAVE / CLEAR CANVAS
 function saveDrawing() {
-    const dataURL = canvas.toDataURL("image/png");
-
-    // Create a new image element
-    const img = document.createElement("img");
-    img.src = dataURL;
-    img.style.width = "200px"; // small preview
-    img.style.margin = "10px";
-    img.style.border = "1px solid #ccc";
-    img.style.borderRadius = "6px";
-
-    // Append to a gallery container (create this in HTML)
-    const gallery = document.getElementById("drawing-gallery");
-    if (gallery) gallery.appendChild(img);
+    const link = document.createElement("a");
+    link.download = "my_brush_drawing.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
 }
-
 
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -102,9 +99,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-
-
-//RESIZE CONTAINER
+// RESIZE CONTAINER
 function resizeContainer() {
     const container = document.querySelector(".container");
     const newWidth = Math.max(300, Math.min(window.innerWidth * 0.8, 800));
