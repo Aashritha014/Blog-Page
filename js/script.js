@@ -1,20 +1,29 @@
-
-// Dark Mode
+// DARK MODE
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
     const btn = document.querySelector(".toggle-btn");
     btn.textContent = document.body.classList.contains("dark-mode") ? "☀️ Light Mode" : "🌙 Dark Mode";
 }
 
-// Smooth scroll
+// SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
 });
 
-// Canvas drawing
+// BLOG / NOTES TOGGLE
+document.querySelectorAll(".blog-toggle, .notes-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const content = btn.nextElementSibling;
+        const isVisible = window.getComputedStyle(content).display !== "none";
+        content.style.display = isVisible ? "none" : "block";
+    });
+});
+
+// CANVAS DRAWING
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext("2d");
 let drawing = false;
@@ -38,13 +47,8 @@ function getTouchPos(canvas, touchEvent) {
 
 function startDraw(e) {
     drawing = true;
-    let x, y;
-    if (e.type.startsWith('touch')) {
-        const pos = getTouchPos(canvas, e);
-        x = pos.x; y = pos.y;
-    } else {
-        x = e.offsetX; y = e.offsetY;
-    }
+    let x = e.offsetX ?? getTouchPos(canvas, e).x;
+    let y = e.offsetY ?? getTouchPos(canvas, e).y;
     ctx.beginPath();
     ctx.moveTo(x, y);
 }
@@ -52,13 +56,8 @@ function startDraw(e) {
 function draw(e) {
     if (!drawing) return;
     e.preventDefault();
-    let x, y;
-    if (e.type.startsWith('touch')) {
-        const pos = getTouchPos(canvas, e);
-        x = pos.x; y = pos.y;
-    } else {
-        x = e.offsetX; y = e.offsetY;
-    }
+    let x = e.offsetX ?? getTouchPos(canvas, e).x;
+    let y = e.offsetY ?? getTouchPos(canvas, e).y;
     ctx.lineTo(x, y);
     ctx.stroke();
 }
@@ -73,28 +72,43 @@ canvas.addEventListener("touchstart", startDraw, { passive: false });
 canvas.addEventListener("touchmove", draw, { passive: false });
 canvas.addEventListener("touchend", endDraw);
 
-// Save drawing
+// SAVE / CLEAR CANVAS
 function saveDrawing() {
-    const link = document.createElement("a");
-    link.download = "my_brush_drawing.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
+    const dataURL = canvas.toDataURL("image/png");
+
+    // Create a new image element
+    const img = document.createElement("img");
+    img.src = dataURL;
+    img.style.width = "200px"; // small preview
+    img.style.margin = "10px";
+    img.style.border = "1px solid #ccc";
+    img.style.borderRadius = "6px";
+
+    // Append to a gallery container (create this in HTML)
+    const gallery = document.getElementById("drawing-gallery");
+    if (gallery) gallery.appendChild(img);
 }
 
-// Clear canvas
+
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// Resize canvas to fit container width
+// RESIZE CANVAS
 function resizeCanvas() {
-    const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = 400; 
-    ctx.putImageData(imgData, 0, 0);
+    canvas.height = 400; // fixed height
 }
-
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 
+
+//RESIZE CONTAINER
+function resizeContainer() {
+    const container = document.querySelector(".container");
+    const newWidth = Math.max(300, Math.min(window.innerWidth * 0.8, 800));
+    container.style.width = newWidth + "px";
+}
+resizeContainer();
+window.addEventListener("resize", resizeContainer);
