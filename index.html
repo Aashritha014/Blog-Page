@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,21 +17,37 @@
         <section id="about">
             <h2>🧸 About Me</h2>
             <p>
-                I'm a second-year Computer Science undergraduate with a passion for teaching machines to learn and building
+                I'm a third-year Computer Science undergraduate with a passion for teaching machines to learn and building
                 websites just for fun. This blog is my personal passion project — a little corner of the internet where
                 I share anything and everything I find exciting or interesting.
             </p>
         </section>
 
-        <section id="blogs">
-            <h2>📑 Blogs</h2>
-            <div class="blog-box">
-                <h3>Basics of NLP</h3>
-                <p>Natural Language Processing (NLP) is the intersection of linguistics and artificial intelligence, enabling computers to understand and process human language.</p>
-                <a href="https://flash-bream-1cd.notion.site/Basics-of-NLP-14c17bf3de1e80a5bbeaf3a79696a82d" target="_blank">Read More</a>
+        <!-- Semester Notes Section -->
+        <section id="semester-notes">
+            <h2>📚 Semester Notes</h2>
+            <div class="notes-box">
+                <button class="notes-toggle">OS Lab</button>
+                <div class="notes-content">
+                    <p>Implementation of various OS concepts using C.</p>
+                    <a href="https://flash-bream-1cd.notion.site/OS-Lab-20917bf3de1e8066b5e7e8e6aa15acf3?source=copy_link" target="_blank">Read More</a>
+                </div>
             </div>
         </section>
 
+        <!-- Blogs Section -->
+        <section id="blogs">
+            <h2>📑 Blogs</h2>
+            <div class="blog-box">
+                <button class="blog-toggle">Basics of NLP</button>
+                <div class="blog-content">
+                    <p>Natural Language Processing (NLP) is the intersection of linguistics and artificial intelligence, enabling computers to understand and process human language.</p>
+                    <a href="https://flash-bream-1cd.notion.site/Basics-of-NLP-14c17bf3de1e80a5bbeaf3a79696a82d" target="_blank">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Canvas Drawing Section -->
         <section id="light-drawing">
             <h2>🎨 Draw here</h2>
 
@@ -53,6 +68,13 @@
 
             <canvas id="drawCanvas"></canvas>
         </section>
+
+        <section id="drawing-gallery-section">
+    <h2>🖼 User Drawings</h2>
+    <div id="drawing-gallery" style="display:flex; flex-wrap:wrap;"></div>
+</section>
+
+
     </div>
 
     <footer>
@@ -62,6 +84,3 @@
     <script src="js/script.js"></script>
 </body>
 </html>
-
-
-
