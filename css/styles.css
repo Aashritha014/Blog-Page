@@ -1,4 +1,4 @@
- /* General Styles */
+/* General Styles */
 body {
     font-family: 'Courier New', Courier, monospace;
     background: linear-gradient(to bottom, #ffefba, #ffffff);
@@ -189,4 +189,3 @@ footer {
     margin-top: 30px;
 }
 .dark-mode footer { background: #1e1e1e; color: #f9f9f9; }
-
