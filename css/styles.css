@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Courier New', Courier, monospace;
     background: linear-gradient(to bottom, #ffefba, #ffffff);
@@ -51,15 +50,36 @@ a:hover { color: #0055cc; }
 section { margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #ddd; }
 section:last-child { border-bottom: none; }
 
-.blog-box {
+.blog-box, .notes-box {
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: 15px;
     background: #f8f8f8;
     margin-top: 15px;
-    text-align: center;
 }
-.dark-mode .blog-box { background: #2a2a2a; border-color: #444; }
+.dark-mode .blog-box, .dark-mode .notes-box { background: #2a2a2a; border-color: #444; }
+
+.blog-toggle, .notes-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 5px 0;
+}
+.blog-toggle:hover, .notes-toggle:hover { color: #0077ff; }
+
+.dark-mode .blog-toggle, .dark-mode .notes-toggle { color: #f8f8f8; }
+.dark-mode .blog-toggle:hover, .dark-mode .notes-toggle:hover { color: #0077ff; }
+
+.blog-content, .notes-content { 
+    display: none; 
+    padding: 10px; 
+    margin-top: 5px; 
+    border-top: 1px solid #ddd; 
+}
 
 .toggle-btn {
     position: fixed;
@@ -103,5 +123,17 @@ footer {
 
 .color-picker { text-align: center; margin-bottom: 10px; }
 
-
-
+#drawing-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;          /* space between images */
+    justify-content: flex-start;
+}
+#drawing-gallery img {
+    width: 200px;       /* thumbnail size */
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
