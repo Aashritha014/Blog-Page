@@ -4,7 +4,7 @@ Welcome to **Aashritha's Blog**! This is a personal website and portfolio for sh
 
 ## ✨ Live Demo
 
-Visit the website [here](https://github.com/Aashritha014/Blog-Page) (or deploy using GitHub Pages).
+Visit the website [here](https://aashritha014.github.io/Blog-Page/) (or deploy using GitHub Pages).
 
 ## 🚀 Features
 
