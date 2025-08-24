@@ -1,4 +1,4 @@
-/* General Styles */
+/* ================= General Styles ================= */
 body {
     font-family: 'Courier New', Courier, monospace;
     background: linear-gradient(to bottom, #ffefba, #ffffff);
@@ -29,10 +29,10 @@ body {
 .dark-mode .container {
     background: #1e1e1e;
     color: #f9f9f9;
-    box-shadow: 0px 10px 30px rgba(255,255,255,0.1);
+    box-shadow: 0px 10px 30px rgba(255,255,255,0.2);
 }
 
-/* Typewriter effect */
+/* ================= Typewriter Effect ================= */
 .typewriter {
     text-align: left;
     white-space: nowrap;
@@ -49,32 +49,34 @@ body {
 @keyframes typing { from { width: 0; } to { width: 18ch; } }
 @keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
-
-/* Typography */
+/* ================= Typography ================= */
 h2 { font-size: 1.8em; margin-top: 20px; }
-
 h3 { font-size: 1.4em; }
 p { font-size: 1.1em; max-width: 600px; margin: 10px auto; line-height: 1.6; }
 a { text-decoration: none; color: #0077ff; font-weight: bold; transition: color 0.3s ease; }
 a:hover { color: #0055cc; }
 .dark-mode a { color: #66aaff; }
 
-/* Sections */
+/* ================= Sections ================= */
 section { margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #ddd; }
 section:last-child { border-bottom: none; }
 
-/* Blog & Notes Boxes */
-.blog-box, .notes-box {
+/* ================= Blog / Notes / Projects Boxes ================= */
+.blog-box, .notes-box, .project-box {
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: 15px;
     background: #f8f8f8;
     margin-top: 15px;
 }
-.dark-mode .blog-box, .dark-mode .notes-box { background: #2a2a2a; border-color: #444; }
 
-/* Blog & Notes Toggles */
-.blog-toggle, .notes-toggle {
+.dark-mode .blog-box, .dark-mode .notes-box, .dark-mode .project-box {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+/* ================= Toggle Buttons ================= */
+.blog-toggle, .notes-toggle, .project-toggle, .about-toggle {
     background: none;
     border: none;
     font-size: 1.2em;
@@ -83,32 +85,36 @@ section:last-child { border-bottom: none; }
     text-align: left;
     width: 100%;
     padding: 5px 0;
+    transition: color 0.3s ease;
 }
-.blog-toggle:hover, .notes-toggle:hover { color: #0077ff; }
-.dark-mode .blog-toggle, .dark-mode .notes-toggle { color: #f8f8f8; }
-.dark-mode .blog-toggle:hover, .dark-mode .notes-toggle:hover { color: #0077ff; }
 
-/* Blog & Notes Content */
-.blog-content, .notes-content { 
+.blog-toggle:hover, .notes-toggle:hover, .project-toggle:hover, .about-toggle:hover {
+    color: #0077ff;
+}
+
+.dark-mode .blog-toggle, 
+.dark-mode .notes-toggle, 
+.dark-mode .project-toggle,
+.dark-mode .about-toggle {
+    color: #f8f8f8;
+}
+
+.dark-mode .blog-toggle:hover, 
+.dark-mode .notes-toggle:hover, 
+.dark-mode .project-toggle:hover,
+.dark-mode .about-toggle:hover {
+    color: #0077ff;
+}
+
+/* ================= Toggle Contents ================= */
+.blog-content, .notes-content, .project-content, .about-content { 
     display: none; 
     padding: 10px; 
     margin-top: 5px; 
     border-top: 1px solid #ddd; 
 }
 
-/* About Me Toggle */
-.about-toggle {
-    cursor: pointer;
-}
-.about-toggle:hover { color: #0077ff; }
-.about-content {
-    display: none;
-    padding: 10px;
-    margin-top: 5px;
-    border-top: 1px solid #ddd;
-}
-
-/* Canvas */
+/* ================= Canvas ================= */
 #drawCanvas {
     border: 2px solid #ccc;
     border-radius: 8px;
@@ -123,7 +129,7 @@ section:last-child { border-bottom: none; }
 
 .color-picker { text-align: center; margin-bottom: 10px; }
 
-/* Gallery */
+/* ================= Gallery ================= */
 #drawing-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -139,7 +145,7 @@ section:last-child { border-bottom: none; }
 }
 #drawing-gallery img:hover { transform: scale(1.05); }
 
-/* Dark Mode Toggle Switch */
+/* ================= Dark Mode Toggle ================= */
 .dark-mode-switch {
     position: fixed;
     top: 10px;
@@ -148,9 +154,9 @@ section:last-child { border-bottom: none; }
     height: 30px;
     z-index: 1000;
 }
-.dark-mode-switch input {
-    display: none;
-}
+
+.dark-mode-switch input { display: none; }
+
 .dark-mode-switch label {
     display: block;
     width: 100%;
@@ -161,6 +167,7 @@ section:last-child { border-bottom: none; }
     cursor: pointer;
     transition: background 0.3s ease;
 }
+
 .dark-mode-switch label::after {
     content: "";
     position: absolute;
@@ -172,14 +179,16 @@ section:last-child { border-bottom: none; }
     left: 2px;
     transition: 0.3s;
 }
+
 .dark-mode-switch input:checked + label {
     background: #0077ff;
 }
+
 .dark-mode-switch input:checked + label::after {
     transform: translateX(30px);
 }
 
-/* Footer */
+/* ================= Footer ================= */
 footer {
     text-align: center;
     padding: 20px;
@@ -188,4 +197,8 @@ footer {
     color: #333;
     margin-top: 30px;
 }
-.dark-mode footer { background: #1e1e1e; color: #f9f9f9; }
+
+.dark-mode footer { 
+    background: #1e1e1e; 
+    color: #f9f9f9; 
+}

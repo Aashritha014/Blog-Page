@@ -4,6 +4,9 @@ darkModeToggle.addEventListener("change", () => {
     document.body.classList.toggle("dark-mode", darkModeToggle.checked);
 });
 
+
+
+
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -13,14 +16,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+
+
+
+
 // BLOG / NOTES TOGGLE
-document.querySelectorAll(".blog-toggle, .notes-toggle, .about-toggle").forEach(btn => {
+document.querySelectorAll(".blog-toggle, .notes-toggle, .about-toggle, .project-toggle").forEach(btn => {
     btn.addEventListener("click", () => {
         const content = btn.nextElementSibling;
         const isVisible = window.getComputedStyle(content).display !== "none";
         content.style.display = isVisible ? "none" : "block";
     });
 });
+
+
+
 
 // CANVAS DRAWING
 const canvas = document.getElementById("drawCanvas");
@@ -79,6 +89,11 @@ canvas.addEventListener("touchstart", startDraw, { passive: false });
 canvas.addEventListener("touchmove", draw, { passive: false });
 canvas.addEventListener("touchend", endDraw);
 
+
+
+
+
+
 // SAVE / CLEAR CANVAS
 function saveDrawing() {
     const link = document.createElement("a");
@@ -91,6 +106,8 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
+
+
 // RESIZE CANVAS
 function resizeCanvas() {
     canvas.width = canvas.parentElement.clientWidth;
@@ -98,6 +115,10 @@ function resizeCanvas() {
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+
+
+
+
 
 // RESIZE CONTAINER
 function resizeContainer() {
