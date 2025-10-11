@@ -23,17 +23,30 @@ body {
 
 /* ================= Typewriter Effect ================= */
 .typewriter {
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid black;
+    display: inline-block;           /* allows width to adjust */
+    white-space: nowrap;             /* prevents text wrap */
+    overflow: hidden;                /* hides overflow */
+    border-right: 3px solid black;   /* cursor effect */
     font-size: clamp(1.5rem, 5vw, 2.5rem);
-    width: 0;
-    animation: typing 3s steps(20, end) forwards, blink 0.6s steps(2, start) 3s;
 }
 
-@keyframes typing { from { width: 0; } to { width: 18ch; } }
-@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
+/* Blinking cursor animation */
+@keyframes blink {
+    0%, 50%, 100% { border-color: black; }
+    25%, 75% { border-color: transparent; }
+}
+
+.typewriter {
+    animation: blink 0.7s step-end infinite;
+}
+
+/* Dark mode support */
+body.dark-mode .typewriter {
+    border-right: 3px solid #f9f9f9;
+}
+
+        
+
 
 /* ================= Typography ================= */
 h2 { font-size: 1.8em; margin-top: 20px; }
@@ -190,7 +203,7 @@ body.dark-mode .nav-links a {
 
 body.dark-mode .nav-links a:hover{
     color: #66aaff;
-},
+}
 body.dark-mode .nav-links a.active {
     color: #66aaff;
 }

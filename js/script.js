@@ -145,21 +145,23 @@ function type() {
     if (!isDeleting) {
         currentCharIndex++;
         typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+
         if (currentCharIndex === currentPhrase.length) {
             isDeleting = true;
-            setTimeout(type, 2000);
+            setTimeout(type, 2000); // pause at full phrase
             return;
         }
     } else {
         currentCharIndex--;
         typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+
         if (currentCharIndex === 0) {
             isDeleting = false;
             currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
         }
     }
 
-    setTimeout(type, isDeleting ? 50 : 100);
+    setTimeout(type, isDeleting ? 50 : 100); // adjust typing & deleting speed
 }
 
 type();
