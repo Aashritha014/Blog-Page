@@ -1,13 +1,11 @@
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById("darkModeToggle");
-darkModeToggle.addEventListener("change", () => {
-    document.body.classList.toggle("dark-mode", darkModeToggle.checked);
+// ================= Dark Mode Button =================
+const darkModeBtn = document.getElementById("darkModeBtn");
+darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    darkModeBtn.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
 });
 
-
-
-
-// SMOOTH SCROLL
+// ================= Smooth Scroll =================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -16,11 +14,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-
-
-
-
-// BLOG / NOTES TOGGLE
+// ================= Blog / Notes Toggle =================
 document.querySelectorAll(".blog-toggle, .notes-toggle, .about-toggle, .project-toggle").forEach(btn => {
     btn.addEventListener("click", () => {
         const content = btn.nextElementSibling;
@@ -29,10 +23,7 @@ document.querySelectorAll(".blog-toggle, .notes-toggle, .about-toggle, .project-
     });
 });
 
-
-
-
-// CANVAS DRAWING
+// ================= Canvas Drawing =================
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext("2d");
 let drawing = false;
@@ -52,11 +43,11 @@ function setThickness(value) {
     ctx.lineWidth = value; 
 }
 
-function getTouchPos(canvas, touchEvent) {
+function getTouchPos(canvas, e) {
     const rect = canvas.getBoundingClientRect();
     return {
-        x: touchEvent.touches[0].clientX - rect.left,
-        y: touchEvent.touches[0].clientY - rect.top
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top
     };
 }
 
@@ -77,9 +68,7 @@ function draw(e) {
     ctx.stroke();
 }
 
-function endDraw() { 
-    drawing = false; 
-}
+function endDraw() { drawing = false; }
 
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", draw);
@@ -89,12 +78,7 @@ canvas.addEventListener("touchstart", startDraw, { passive: false });
 canvas.addEventListener("touchmove", draw, { passive: false });
 canvas.addEventListener("touchend", endDraw);
 
-
-
-
-
-
-// SAVE / CLEAR CANVAS
+// ================= Save / Clear Canvas =================
 function saveDrawing() {
     const link = document.createElement("a");
     link.download = "my_brush_drawing.png";
@@ -106,21 +90,15 @@ function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-
-
-// RESIZE CANVAS
+// ================= Resize Canvas =================
 function resizeCanvas() {
     canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = 400; // fixed height
+    canvas.height = 400;
 }
 resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+window.addEventListener("resize", resizeCanvas);
 
-
-
-
-
-// RESIZE CONTAINER
+// ================= Resize Container =================
 function resizeContainer() {
     const container = document.querySelector(".container");
     const newWidth = Math.max(300, Math.min(window.innerWidth * 0.8, 800));
@@ -128,3 +106,60 @@ function resizeContainer() {
 }
 resizeContainer();
 window.addEventListener("resize", resizeContainer);
+
+// ================= Active Nav Link on Scroll =================
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+    const navbarHeight = navbar.offsetHeight + 10;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - navbarHeight;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+        }
+    });
+});
+
+// ================= Typewriter Effect =================
+const typewriterElement = document.getElementById("typewriter");
+const phrases = ["Welcome to My Portfolio", "Web Developer", "Tech Enthusiast", "AI/ML Explorer", "Aashritha Reddy"];
+let currentPhraseIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+
+function type() {
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (!isDeleting) {
+        currentCharIndex++;
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+        if (currentCharIndex === currentPhrase.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+            return;
+        }
+    } else {
+        currentCharIndex--;
+        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+        if (currentCharIndex === 0) {
+            isDeleting = false;
+            currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        }
+    }
+
+    setTimeout(type, isDeleting ? 50 : 100);
+}
+
+type();

@@ -3,108 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AASHRITHA REDDY</title>
+    <title>Aashritha Reddy</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    
-    <!-- Dark Mode Toggle -->
-<div class="dark-mode-switch">
-    <input type="checkbox" id="darkModeToggle">
-    <label for="darkModeToggle"></label>
-</div>
 
-
-
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Aashritha Reddy</div>
+        <ul class="nav-links">
+            <li><a href="#about" class="active">About</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#semester-notes">Notes</a></li>
+            <li><a href="#light-drawing">Fun</a></li>
+        </ul>
+        <button id="darkModeBtn" class="dark-mode-btn">Dark Mode</button>
+    </nav>
 
     <div class="container">
+        <!-- Typewriter Header -->
         <header>
-            <h1 class="typewriter">Aashritha's Blog</h1>
+            <h1 id="typewriter" class="typewriter"></h1>
         </header>
 
-    <section id="about">
-    <h2 class="about-toggle">🧸 About Me</h2>
-    <div class="about-content">
-        <p>
-            I'm a third-year Computer Science undergraduate with a passion for teaching machines to learn and building
-            websites just for fun. This blog is my personal passion project — a little corner of the internet where
-            I share anything and everything I find exciting or interesting.
-        </p>
-    </div>
-</section>
+        <!-- About Section -->
+        <section id="about">
+            <h2>🧸 About Me</h2>
+            <p>
+                I'm a third-year Computer Science undergraduate with a passion for teaching machines to learn and building
+                websites just for fun. This blog is my personal passion project — a little corner of the internet where
+                I share anything and everything I find exciting or interesting.
+            </p>
+        </section>
 
-
-<!-- Blogs Section -->
+        <!-- Blogs Section -->
         <section id="blogs">
             <h2>📜 Blogs</h2>
             <div class="blog-box">
-                <button class="blog-toggle">Understanding Linear Regression</button>
-                <div class="blog-content">
-                    <p>This is the most basic and overlooked in today’s machine learning world, when we have advanced stuff, like transformers, RNNs and so much more. But in reality, if you dive deep into any kind of model, it will have linear regression in some form or the other!</p>
-                    <a href="https://flash-bream-1cd.notion.site/Linear-Regression-15517bf3de1e80e592e4d92f078395f3?source=copy_link" target="_blank">Read More</a>
-                </div>
+                <h3>Understanding Linear Regression</h3>
+                <p>This is the most basic and overlooked model in today’s machine learning world...</p>
+                <a href="https://flash-bream-1cd.notion.site/Linear-Regression-15517bf3de1e80e592e4d92f078395f3" target="_blank">Read More</a>
             </div>
-
             <div class="blog-box">
-                <button class="blog-toggle">Basics of NLP</button>
-                <div class="blog-content">
-                    <p>Natural Language Processing (NLP) is the intersection of linguistics and artificial intelligence, enabling computers to understand and process human language.</p>
-                    <a href="https://flash-bream-1cd.notion.site/Basics-of-NLP-14c17bf3de1e80a5bbeaf3a79696a82d" target="_blank">Read More</a>
-                </div>
+                <h3>Basics of NLP</h3>
+                <p>Natural Language Processing (NLP) enables computers to understand and process human language.</p>
+                <a href="https://flash-bream-1cd.notion.site/Basics-of-NLP-14c17bf3de1e80a5bbeaf3a79696a82d" target="_blank">Read More</a>
             </div>
-
-            <div class="blog-box"> 
-                <button class="blog-toggle">Git & GitHub for Beginners</button>
-                <div class="blog-content"> 
-                    <p>Learn Git and GitHub from scratch with simple explanations and step-by-step commands for beginners.</p>
-                    <a href="https://flash-bream-1cd.notion.site/Git-Github-18117bf3de1e8053b334defaa1b7465c?source=copy_link" target="_blank">Read More</a>
-                </div>
+            <div class="blog-box">
+                <h3>Git & GitHub for Beginners</h3>
+                <p>Learn Git and GitHub from scratch with simple explanations and step-by-step commands.</p>
+                <a href="https://flash-bream-1cd.notion.site/Git-Github-18117bf3de1e8053b334defaa1b7465c" target="_blank">Read More</a>
             </div>
-
-            <div class ="blog-box">
-                <button class="blog-toggle">Computer Networks 101</button>
-                <div class="blog-content">
-                    <p>Internet history, client-server basics, protocols, IP addresses, ports, submarine cables, network types, hardware, and topologies</p>
-                    <a href="https://flash-bream-1cd.notion.site/Computer-Networks-101-28317bf3de1e807da480d7725e9fd398?source=copy_link" target="_blank">Read More</a>
-                </div>
+            <div class="blog-box">
+                <h3>Computer Networks 101</h3>
+                <p>Internet history, protocols, IP addresses, network types, and more.</p>
+                <a href="https://flash-bream-1cd.notion.site/Computer-Networks-101-28317bf3de1e807da480d7725e9fd398" target="_blank">Read More</a>
             </div>
-
         </section>
-       
 
-         <!-- Projects Section -->
+        <!-- Projects Section -->
         <section id="projects">
             <h2>📦 Projects</h2>
             <div class="project-box">
-                <button class="project-toggle">House Prediction Model</button>
-                <div class="project-content">
-                    <p>A machine learning model that predicts house prices based on various features such as size and number of rooms.</p>
-                    <a href="https://aashritha014.github.io/house-price-predictor/ " target="_blank">View Project</a>
-                </div>
+                <h3>House Prediction Model</h3>
+                <p>A machine learning model that predicts house prices based on various features.</p>
+                <a href="https://aashritha014.github.io/house-price-predictor/" target="_blank">View Project</a>
             </div>
         </section>
 
-        
-
-         <!-- Semester Notes Section -->
+        <!-- Semester Notes Section -->
         <section id="semester-notes">
-            <h2>📓 Semester Notes  </h2>
-
+            <h2>📓 Semester Notes</h2>
             <div class="notes-box">
-                <button class="notes-toggle">OS Lab</button>
-                <div class="notes-content">
-                    <p> Implementation of various OS concepts using C.</p>
-                    <a href="https://flash-bream-1cd.notion.site/OS-Lab-20917bf3de1e8066b5e7e8e6aa15acf3?source=copy_link" target="_blank">Full Notes</a>
-                </div>
+                <h3>OS Lab</h3>
+                <p>Implementation of various OS concepts using C.</p>
+                <a href="https://flash-bream-1cd.notion.site/OS-Lab-20917bf3de1e8066b5e7e8e6aa15acf3" target="_blank">Full Notes</a>
             </div>
-
             <div class="notes-box">
-                <button class="notes-toggle">DBMS Notes</button>
-                <div class="notes-content">
-                    <p>Semester notes of all 5 units in DBMS .</p>
-                    <a href="https://aashritha014.github.io/dbms-notes/" target="_blank">Full Notes</a>
-                </div>
+                <h3>DBMS Notes</h3>
+                <p>Semester notes of all 5 units in DBMS.</p>
+                <a href="https://aashritha014.github.io/dbms-notes/" target="_blank">Full Notes</a>
+            </div>
         </section>
 
         <!-- Canvas Drawing Section -->
@@ -112,12 +93,12 @@
             <h2>🖼️ Draw Here</h2>
 
             <div class="color-picker">
-                <label for="colorPicker">Choose Brush Color: </label>
+                <label for="colorPicker">Brush Color:</label>
                 <input type="color" id="colorPicker" value="#00ffff" onchange="setColor(this.value)">
             </div>
 
             <div style="text-align:center; margin-top:10px;">
-                <label for="thickness">Stroke Thickness: </label>
+                <label for="thickness">Stroke Thickness:</label>
                 <input type="range" id="thickness" min="1" max="50" value="5" oninput="setThickness(this.value)">
             </div>
 
@@ -128,18 +109,14 @@
 
             <canvas id="drawCanvas"></canvas>
         </section>
-
-       
-
     </div>
 
- <footer>
-  <i class="fab fa-github"></i> GitHub:
-  <a href="https://github.com/Aashritha014" target="_blank">Aashritha014</a> | 
-
-  <i class="fas fa-envelope"></i>&nbsp;E-mail: 
-  <a href="mailto:s.aashritha14@gmail.com">s.aashritha14@gmail.com</a>
-</footer>
+    <footer>
+        <i class="fab fa-github"></i> GitHub:
+        <a href="https://github.com/Aashritha014" target="_blank">Aashritha014</a> |
+        <i class="fas fa-envelope"></i> E-mail:
+        <a href="mailto:s.aashritha14@gmail.com">s.aashritha14@gmail.com</a>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>
