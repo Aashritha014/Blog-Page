@@ -21,26 +21,19 @@ body {
     box-sizing: border-box;
 }
 
-/* ================= Dark Mode ================= */
-.dark-mode {
-    background: linear-gradient(to bottom, #0d1b2a, #1b263b);
-    color: #f9f9f9;
-}
-
-.dark-mode .container {
-    background: #1e1e1e;
-    color: #f9f9f9;
-    box-shadow: 0px 10px 30px rgba(255,255,255,0.2);
-}
-
-/* ================= Typewriter ================= */
+/* ================= Typewriter Effect ================= */
 .typewriter {
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
     border-right: 3px solid black;
     font-size: clamp(1.5rem, 5vw, 2.5rem);
+    width: 0;
+    animation: typing 3s steps(20, end) forwards, blink 0.6s steps(2, start) 3s;
 }
+
+@keyframes typing { from { width: 0; } to { width: 18ch; } }
+@keyframes blink { 50% { border-color: transparent; } 100% { border-color: transparent; } }
 
 /* ================= Typography ================= */
 h2 { font-size: 1.8em; margin-top: 20px; }
@@ -48,7 +41,6 @@ h3 { font-size: 1.4em; }
 p { font-size: 1.1em; max-width: 600px; margin: 10px auto; line-height: 1.6; }
 a { text-decoration: none; color: #0077ff; font-weight: bold; transition: color 0.3s ease; }
 a:hover { color: #0055cc; }
-.dark-mode a { color: #66aaff; }
 
 /* ================= Sections ================= */
 section { margin-bottom: 30px; padding: 20px; border-bottom: 2px solid #ddd; }
@@ -62,34 +54,6 @@ section:last-child { border-bottom: none; }
     background: #f8f8f8;
     margin-top: 15px;
 }
-.dark-mode .blog-box, .dark-mode .notes-box, .dark-mode .project-box {
-    background: #2a2a2a;
-    border-color: #444;
-}
-
-/* ================= Toggle Buttons ================= */
-.blog-toggle, .notes-toggle, .project-toggle, .about-toggle {
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-    padding: 5px 0;
-    transition: color 0.3s ease;
-}
-.blog-toggle:hover, .notes-toggle:hover, .project-toggle:hover, .about-toggle:hover { color: #0077ff; }
-.dark-mode .blog-toggle, .dark-mode .notes-toggle, .dark-mode .project-toggle, .dark-mode .about-toggle { color: #f8f8f8; }
-.dark-mode .blog-toggle:hover, .dark-mode .notes-toggle:hover, .dark-mode .project-toggle:hover, .dark-mode .about-toggle:hover { color: #0077ff; }
-
-/* ================= Toggle Contents ================= */
-.blog-content, .notes-content, .project-content, .about-content { 
-    display: none; 
-    padding: 10px; 
-    margin-top: 5px; 
-    border-top: 1px solid #ddd; 
-}
 
 /* ================= Canvas ================= */
 #drawCanvas {
@@ -98,9 +62,12 @@ section:last-child { border-bottom: none; }
     display: block;
     margin: 20px auto;
     touch-action: none;
+    background: transparent;
     width: 100%;
     height: 400px;
+    max-width: 100%;
 }
+
 .color-picker { text-align: center; margin-bottom: 10px; }
 
 /* ================= Gallery ================= */
@@ -119,24 +86,75 @@ section:last-child { border-bottom: none; }
 }
 #drawing-gallery img:hover { transform: scale(1.05); }
 
-/* ================= Dark Mode Button ================= */
-.dark-mode-switch {
-    position: fixed;
-    top: 10px;
-    right: 10px;
+/* ================= Navbar ================= */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* logo left, button right */
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 1000;
 }
-.dark-mode-switch button {
-    background: #0077ff;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 6px 14px;
-    cursor: pointer;
+
+/* Logo on the far left */
+.navbar .logo {
+    font-size: 1.5rem;
     font-weight: bold;
-    transition: background 0.3s ease;
 }
-.dark-mode-switch button:hover { background: #0055cc; }
+
+/* Navigation links in center/flex-grow */
+.navbar .nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0 20px;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center; /* center links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #0077ff;
+}
+
+/* Dark/Light Mode Button */
+.dark-mode-btn {
+    padding: 6px 12px;
+    border: none;
+    background-color: #0077ff;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dark-mode-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Offset for fixed navbar */
+.container {
+    margin-top: 110px;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
 
 /* ================= Footer ================= */
 footer {
@@ -147,63 +165,92 @@ footer {
     color: #333;
     margin-top: 30px;
 }
-.dark-mode footer { background: #1e1e1e; color: #f9f9f9; }
 
-/* ================= Navbar ================= */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(95%, 1100px);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    color: #222;
-    display: flex;
-    justify-content: center; /* center-aligned nav */
-    align-items: center;
-    gap: 40px;
-    padding: 14px 32px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 999;
-    transition: all 0.3s ease-in-out;
+/* ================= Dark Mode Styles ================= */
+body.dark-mode {
+    background: linear-gradient(to bottom, #0d1b2a, #1b263b);
+    color: #f9f9f9;
 }
-.navbar .logo { font-weight: 700; font-size: 1.3rem; font-family: 'Courier New', Courier, monospace; }
-.nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
-.nav-links a { text-decoration: none; color: inherit; font-weight: 600; letter-spacing: 0.3px; transition: color 0.3s ease; }
-.nav-links a:hover { color: #0077ff; }
 
-/* Offset for fixed navbar */
-.container { margin-top: 110px; }
+body.dark-mode .container {
+    background: #1e1e1e;
+    color: #f9f9f9;
+    box-shadow: 0px 10px 30px rgba(255,255,255,0.2);
+}
 
-/* ================= Dark Mode Navbar ================= */
-.dark-mode .navbar { background: rgba(25, 25, 25, 0.9); color: #f5f5f5; }
-.dark-mode .nav-links a:hover { color: #00ffff; }
+body.dark-mode .navbar {
+    background: rgba(25,25,25,0.9);
+    color: #f5f5f5;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
 
-/* ================= Active Link ================= */
-.nav-links a.active { color: #0077ff; text-decoration: underline; }
-.dark-mode .nav-links a.active { color: #00ffff; }
+body.dark-mode .nav-links a {
+    color: #f9f9f9;
+}
+
+body.dark-mode .nav-links a:hover{
+    color: #66aaff;
+},
+body.dark-mode .nav-links a.active {
+    color: #66aaff;
+}
+
+body.dark-mode .dark-mode-btn {
+    background-color: #555;
+}
+
+body.dark-mode .dark-mode-btn:hover {
+    background-color: #777;
+}
+
+body.dark-mode .blog-box,
+body.dark-mode .notes-box,
+body.dark-mode .project-box {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode section {
+    border-bottom: 2px solid #444;
+}
+
+body.dark-mode #drawCanvas {
+    border: 2px solid #555;
+}
+
+body.dark-mode #drawing-gallery img {
+    border: 1px solid #555;
+}
+
+body.dark-mode .color-picker {
+    color: #f9f9f9;
+}
 
 /* ================= Responsive Navbar ================= */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 15px;
+        align-items: flex-start;
         padding: 10px 20px;
+        border-radius: 0 0 20px 20px;
     }
-    .nav-links { flex-direction: column; gap: 10px; width: 100%; margin-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 10px; }
-    .dark-mode .nav-links { border-top: 1px solid rgba(255,255,255,0.1); }
-    .nav-links a { padding: 8px 0; width: 100%; text-align: left; }
-}
 
-/* ================= Additional Dark Mode Tweaks ================= */
-.dark-mode .typewriter { border-right: 3px solid #f9f9f9; }
-.dark-mode section { border-bottom: 2px solid #444; }
-.dark-mode .blog-content, .dark-mode .notes-content, .dark-mode .project-content, .dark-mode .about-content { border-top: 1px solid #444; }
-.dark-mode #drawCanvas { border: 2px solid #555; }
-.dark-mode #drawing-gallery img { border: 1px solid #555; }
-.dark-mode .color-picker { color: #f9f9f9; }
-.dark-mode .dark-mode-switch button { background: #00ffff; color: #222; }
-.dark-mode .dark-mode-switch button:hover { background: #00cccc; }      
-/* ================= End of Styles ================= */
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        margin-top: 10px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        padding-top: 10px;
+    }
+
+    body.dark-mode .nav-links {
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: left;
+        padding: 8px 0;
+    }
+}
